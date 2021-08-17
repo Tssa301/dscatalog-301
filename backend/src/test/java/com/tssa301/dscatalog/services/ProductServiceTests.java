@@ -91,7 +91,7 @@ public class ProductServiceTests {
 	}
 	
 	@Test
-	public void updateShouldThrowResourceNotFoundExceptionWhenIdDoesNotExixts() {
+	public void updateShouldThrowResourceNotFoundExceptionWhenIdDoesNotExixt() {
 		
 		Assertions.assertThrows(ResourceNotFoundException.class, () -> {
 			service.update(nonExistingId, productDTO);
@@ -106,7 +106,7 @@ public class ProductServiceTests {
 	}
 	
 	@Test
-	public void findByIdShouldThrowResourceNotFoundExceptionWhenIdDoesNotExixts() {
+	public void findByIdShouldThrowResourceNotFoundExceptionWhenIdDoesNotExixt() {
 		
 		Assertions.assertThrows(ResourceNotFoundException.class, () -> {
 			service.findById(nonExistingId);
@@ -124,7 +124,7 @@ public class ProductServiceTests {
 	}
 	
 	@Test
-	public void deleteShouldThrowDatabaseExceptionWhenIdDoesNotExists() {
+	public void deleteShouldThrowDatabaseExceptionWhenIdDoesNotExist() {
 
 		Assertions.assertThrows(DatabaseException.class, () -> {
 			service.delete(dependetId);
@@ -134,7 +134,7 @@ public class ProductServiceTests {
 	}
 
 	@Test
-	public void deleteShouldThrowResourceNotFoundExceptionWhenIdDoesNotExists() {
+	public void deleteShouldThrowResourceNotFoundExceptionWhenIdDoesNotExist() {
 
 		Assertions.assertThrows(ResourceNotFoundException.class, () -> {
 			service.delete(nonExistingId);
