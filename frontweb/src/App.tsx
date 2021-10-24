@@ -1,15 +1,17 @@
-import Home from './pages/Home';
+//import Home from './pages/Home';
+//import Catalog from 'pages/Catalog';
 
 import './assets/styles/custom.scss';
 import './App.css';
+import Routes from 'Routes';
 
 function App() {
+  
   return (
     <>
-      <Home/>
+      <Routes />
     </>
   );
 }
 
 export default App;
- 
