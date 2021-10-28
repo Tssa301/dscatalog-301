@@ -26,7 +26,10 @@ const Catalog = () => {
   };
 
   return (
-    <div className="container my-4">
+    <div className="container my-4 catalog-container">
+      <div className="row catalog-title-container">
+        <h1>Product Catalog</h1>
+      </div>
       <div className="row">
         <div className="col-sm-6 col-lg-4 col-xl-3">
           <Link to="/products/1">
