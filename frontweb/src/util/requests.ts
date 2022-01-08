@@ -1,5 +1,4 @@
 import axios, { AxiosRequestConfig } from "axios";
-import { type } from "os";
 import qs from "qs";
 import history from './history'
 import jwtDecode from 'jwt-decode';
