@@ -9,35 +9,41 @@ import { saveAuthData } from 'util/storage';
 
 import './styles.css';
 
-type FormData = {
+type CredentialsDTO = {
   username: string;
   password: string;
 };
 
 type LocationState = {
   from: string;
-}
+};
 
 const Login = () => {
   const location = useLocation<LocationState>();
 
-  const {from} = location.state || { from: { pathname: '/admin'}}
+  const { from } = location.state || { from: { pathname: '/admin' } };
 
   const { setAuthContextData } = useContext(AuthContext);
 
   const [hasError, setHasError] = useState(false);
 
-  const { register, handleSubmit, formState: { errors } } = useForm<FormData>();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<CredentialsDTO>();
 
   const history = useHistory();
 
-  const onSubmit = (formData: FormData) => {
+  const onSubmit = (formData: CredentialsDTO) => {
     requestBackendLogin(formData)
       .then((response) => {
         saveAuthData(response.data);
         setHasError(false);
-        setAuthContextData({ 
-          authenticated: true, tokenData: getTokenData() })
+        setAuthContextData({
+          authenticated: true,
+          tokenData: getTokenData(),
+        });
         history.replace(from);
       })
       .catch((error) => {
@@ -65,7 +71,9 @@ const Login = () => {
               },
             })}
             type="text"
-            className={`form-control base-input ${errors.username ? 'is-invalid' : ''}`}
+            className={`form-control base-input ${
+              errors.username ? 'is-invalid' : ''
+            }`}
             placeholder="Email"
             name="username"
           />
@@ -79,7 +87,9 @@ const Login = () => {
               required: 'Required field',
             })}
             type="password"
-            className={`form-control base-input ${errors.password ? 'is-invalid' : ''}`}
+            className={`form-control base-input ${
+              errors.password ? 'is-invalid' : ''
+            }`}
             placeholder="Password"
             name="password"
           />
