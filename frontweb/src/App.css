@@ -14,6 +14,12 @@ h6 {
   margin-bottom: 0;
 }
 
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
 a,
 a:hover {
   text-decoration: none;
@@ -34,6 +40,6 @@ a:hover {
   height: 50px;
 }
 
-.base-input::placeholder{
-    color: #9E9E9E;
+.base-input::placeholder {
+  color: #9e9e9e;
 }
