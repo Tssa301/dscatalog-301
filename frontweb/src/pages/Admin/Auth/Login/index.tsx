@@ -3,9 +3,9 @@ import ButtonIcon from 'components/ButtonIcon';
 import { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link, useHistory, useLocation } from 'react-router-dom';
-import { getTokenData } from 'util/auth';
 import { requestBackendLogin } from 'util/requests';
 import { saveAuthData } from 'util/storage';
+import { getTokenData } from 'util/token';
 
 import './styles.css';
 
@@ -71,9 +71,8 @@ const Login = () => {
               },
             })}
             type="text"
-            className={`form-control base-input ${
-              errors.username ? 'is-invalid' : ''
-            }`}
+            className={`form-control base-input ${errors.username ? 'is-invalid' : ''
+              }`}
             placeholder="Email"
             name="username"
           />
@@ -87,9 +86,8 @@ const Login = () => {
               required: 'Required field',
             })}
             type="password"
-            className={`form-control base-input ${
-              errors.password ? 'is-invalid' : ''
-            }`}
+            className={`form-control base-input ${errors.password ? 'is-invalid' : ''
+              }`}
             placeholder="Password"
             name="password"
           />

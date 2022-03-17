@@ -1,13 +1,36 @@
-import {formatPrice} from "util/formatters"
+import { formatPrice } from "util/formatters"
 
-test('formatPrice should format number eng when give 10.1', () => {
+describe('formatPrice for positive numbers', () => {
 
-    //Arrange:
-    const value = 10.1;
+    test('formatPrice should format number eng when give 10.1', () => {
+        //Arrange:
+        const value = 10.1;
+        //Act:
+        const result = formatPrice(value);
+        //Assert:
+        expect(result).toEqual("10.10")
+    });
 
-    //Act:
-    const result = formatPrice(value);
+    test('formatPrice should format number eng when give 0.1', () => {
+        const result = formatPrice(0.1);
+        expect(result).toEqual("0.10")
+    });
+});
 
-    //Assert:
-    expect(result).toEqual("10.10")
-})
+describe('formatPrice for non-positive numbers', () => {
+
+    test('formatPrice should format number eng when give 0', () => {
+        //Arrange:
+        const value = 0.0;
+        //Act:
+        const result = formatPrice(value);
+        //Assert:
+        expect(result).toEqual("0.00")
+    });
+
+    test('formatPrice should format number eng when give -5.1', () => {
+        const result = formatPrice(-5.1);
+        expect(result).toEqual("-5.10")
+    });
+});
+
