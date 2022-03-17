@@ -3,12 +3,12 @@ import * as TokenModule from '../token';
 
 describe('hasAnyRoles tests', () => {
 
-    test('should return true when empty list', () => {
+    test('should return true when the list is empty', () => {
         const result = hasAnyRoles([]);
         expect(result).toEqual(true);
     });
 
-    test('should return true when user has given role', () => {
+    test('should return true when the user has given role', () => {
 
         jest.spyOn(TokenModule, 'getTokenData').mockReturnValue({
             exp: 0,
@@ -18,5 +18,17 @@ describe('hasAnyRoles tests', () => {
 
         const result = hasAnyRoles(['ROLE_ADMIN']);
         expect(result).toEqual(true);
+    });
+
+    test('should return true when the user does not have a given role', () => {
+
+        jest.spyOn(TokenModule, 'getTokenData').mockReturnValue({
+            exp: 0,
+            user_name: '',
+            authorities: ['ROLE_OPERATOR',],
+        });
+
+        const result = hasAnyRoles(['ROLE_ADMIN']);
+        expect(result).toEqual(false);
     });
 });
