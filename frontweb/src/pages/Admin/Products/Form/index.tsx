@@ -76,7 +76,7 @@ const Form = () => {
           progress: undefined,
           theme: 'colored',
         });
-        history.push('/admin/products/');
+        history.push('/admin/products');
       })
       .catch(() => {
         toast.error('Product registration failed!', {
@@ -93,7 +93,7 @@ const Form = () => {
   };
 
   const handleCancel = () => {
-    history.push('/admin/products/');
+    history.push('/admin/products');
   };
 
   return (
@@ -109,11 +109,11 @@ const Form = () => {
                     required: 'Required field!',
                   })}
                   type="text"
-                  className={`form-control base-input ${
-                    errors.name ? 'is-invalid' : ''
-                  }`}
+                  className={`form-control base-input ${errors.name ? 'is-invalid' : ''
+                    }`}
                   placeholder="Product name"
                   name="name"
+                  data-testid="name"
                 />
                 <div className="invalid-feedback d-block">
                   {errors.name?.message}
@@ -121,6 +121,7 @@ const Form = () => {
               </div>
 
               <div className="margin-bottom-30">
+                <label htmlFor='categories' className='d-none'>Categories</label>
                 <Controller
                   name="categories"
                   rules={{ required: true }}
@@ -135,6 +136,7 @@ const Form = () => {
                       getOptionValue={(category: Category) =>
                         String(category.id)
                       }
+                      inputId="categories"
                     />
                   )}
                 />
@@ -153,12 +155,12 @@ const Form = () => {
                   render={({ field }) => (
                     <CurrencyInput
                       placeholder="Price"
-                      className={`form-control base-input ${
-                        errors.name ? 'is-invalid' : ''
-                      }`}
+                      className={`form-control base-input ${errors.name ? 'is-invalid' : ''
+                        }`}
                       disableGroupSeparators={true}
                       value={field.value}
                       onValueChange={field.onChange}
+                      data-testid="price"
                     />
                   )}
                 />
@@ -177,11 +179,11 @@ const Form = () => {
                     },
                   })}
                   type="text"
-                  className={`form-control base-input ${
-                    errors.name ? 'is-invalid' : ''
-                  }`}
+                  className={`form-control base-input ${errors.name ? 'is-invalid' : ''
+                    }`}
                   placeholder="Product image URL"
                   name="imgUrl"
+                  data-testid="imgUrl"
                 />
                 <div className="invalid-feedback d-block">
                   {errors.imgUrl?.message}
@@ -195,11 +197,11 @@ const Form = () => {
                   {...register('description', {
                     required: 'Required field!',
                   })}
-                  className={`form-control base-input h-auto ${
-                    errors.name ? 'is-invalid' : ''
-                  }`}
+                  className={`form-control base-input h-auto ${errors.name ? 'is-invalid' : ''
+                    }`}
                   placeholder="Description"
                   name="description"
+                  data-testid="description"
                 />
                 <div className="invalid-feedback d-block">
                   {errors.description?.message}
