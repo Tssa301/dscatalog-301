@@ -150,7 +150,7 @@ const Form = () => {
               <div className="margin-bottom-30">
                 <Controller
                   name="price"
-                  rules={{ required: 'Required field' }}
+                  rules={{ required: 'Required field!' }}
                   control={control}
                   render={({ field }) => (
                     <CurrencyInput
