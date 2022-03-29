@@ -80,5 +80,42 @@ describe('Product form create tests', () => {
             expect(messages).toHaveLength(5);
         });
     });
+
+    test('should clear validation messages when filling out the form correctly', async () => {
+
+        render(
+            <Router history={history}>
+                <Form />
+            </Router>
+        );
+        
+        //Verifying required fields input (create 5 error messages):
+        const submitButton = screen.getByRole('button', { name: /save/i });
+        userEvent.click(submitButton);
+
+        await waitFor(() => {
+            const messages = screen.getAllByText('Required field!');
+            expect(messages).toHaveLength(5);
+        });
+
+        //filling out the form correctly:
+        const nameInput = screen.getByTestId("name");
+        const priceInput = screen.getByTestId("price");
+        const imgUrlInput = screen.getByTestId("imgUrl");
+        const descriptionInput = screen.getByTestId("description");
+        const categoriesInput = screen.getByLabelText("Categories");
+
+        await selectEvent.select(categoriesInput, ['Electronics', 'Computers']);
+        userEvent.type(nameInput, 'Computer');
+        userEvent.type(priceInput, '1800.85');
+        userEvent.type(imgUrlInput, 'https://www.pexels.com/photo/silver-and-black-laptop-computer-1229861/');
+        userEvent.type(descriptionInput, 'Silver and black laptop');
+
+        //Verifying required fields input (clearing validation messages):
+        await waitFor(() => {
+            const messages = screen.queryAllByText('Required field!');
+            expect(messages).toHaveLength(0);
+        });
+    });
 });
 
