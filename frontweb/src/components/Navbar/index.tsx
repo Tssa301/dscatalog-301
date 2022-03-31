@@ -4,8 +4,9 @@ import { Link, NavLink } from 'react-router-dom';
 import { useContext, useEffect } from 'react';
 import history from 'util/history';
 import { AuthContext } from 'AuthContext';
-import { getTokenData, isAuthenticated } from 'util/auth';
+import { isAuthenticated } from 'util/auth';
 import { removeAuthData } from 'util/storage';
+import { getTokenData } from 'util/token';
 
 
 const Navbar = () => {
@@ -62,12 +63,12 @@ const Navbar = () => {
             </li>
           </ul>
         </div>
-        
+
         <div className="nav-login-logout">
           {authContextData.authenticated ? (
             <>
-            <span className="nav-username">{authContextData.tokenData?.user_name}</span>
-            <a href="#logout" onClick={handleLogoutClick}>LOGOUT</a>
+              <span className="nav-username">{authContextData.tokenData?.user_name}</span>
+              <a href="#logout" onClick={handleLogoutClick}>LOGOUT</a>
             </>
           ) : (
             <Link to="/admin/auth">LOGIN</Link>
